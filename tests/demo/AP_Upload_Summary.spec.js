@@ -16,7 +16,12 @@ test('test', async ({ page }) => {
   await page.getByRole('link', { name: 'Upload' }).click();
   await page.getByRole('button', { name: 'Upload down' }).click();
   await page.getByText('Upload Excel').click();
-  await page.locator('.ant-upload ant-upload-drag>span>input').setInputFiles('tests\\AP_Upload_Summary\\AP Invoice Upload 18-08-23.xlsx');
-  //await page.locator('.ant-upload-drag-container').setInputFiles('tests\\AP_Upload_Summary\\AP Invoice Upload 18-08-23.xlsx');
-  //await page.getByRole('button', { name: 'You can drag and drop file to upload or browse. Supported file types: XLS, XLSX or CSV file' }).click();
+  await page.locator('body div.ant-modal-wrap.upload-modal-body div.ant-modal-content > div.ant-modal-body div.ant-upload.ant-upload-drag input[type=file]').setInputFiles('tests\\AP_Upload_Summary\\AP Invoice Upload 18-08-23.xlsx');
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await page.getByText('Success', { exact: true }).click();
+  await page.goto('https://biz-dev1.kredx.com/payables/invoice');
+  await page.getByText('Documents', { exact: true }).click();
+  await page.getByRole('link', { name: 'Invoices' }).click();
+  //await page.pause();
+  await page.getByRole('row', { name: 'IN3207007 IN3207007 Aug 17, 2023 Aug 17, 2023 Aug 30, 2023 Shetty Traders Pvt Ltd -- -- -- -- Submitted -- ₹345,000.00 Not Sent -- --' }).locator('u').click();
 });
