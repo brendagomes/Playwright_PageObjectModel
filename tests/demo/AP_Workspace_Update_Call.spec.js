@@ -11,19 +11,15 @@ test('test', async ({ page }) => {
   await page.getByLabel('Password').press('CapsLock');
   await page.getByLabel('Password').fill('Asdf!234');
   await page.getByLabel('Password').press('Enter');
-  await page.getByRole('link', { name: 'Activities' }).click();
   await page.getByPlaceholder('Search').click();
   await page.getByPlaceholder('Search').press('CapsLock');
-  await page.getByPlaceholder('Search').fill('A_241');
-//await page.pause();
-   await page.locator('#apollo-table-27aebb48-69ac-4979-8671-244ffe326446 > div > div.ant-table-body > table > tbody > tr:nth-child(4) > td.ant-table-cell.ant-table-selection-column.ant-table-cell-fix-left > label > span > input').check();
-   await page.pause();
-   await page.locator(getByLabel('', { exact: true })).check();
-    await page.pause();
-  await page.locator('u').filter({ hasText: 'Dispute Resolution' }).click();
-  await page.locator('div').filter({ hasText: /^StatusOPEN$/ }).getByAltText('edit-icon').click();
-  await page.getByText('Open').click();
-  await page.getByText('InProgress').click();
-  await page.getByRole('button', { name: 'Update' }).click();
-
+  await page.getByPlaceholder('Search').fill('IN2908286');
+  await page.getByRole('row', { name: 'IN2908286 A_241 Girish Collections Invoice IN2908286 Aug 31st 2023, 08:13 PM Open' }).getByLabel('').check();
+  await page.getByRole('button', { name: 'Update Call' }).click();
+  await page.getByTitle('Open').click();
+  await page.getByText('Resolved', { exact: true }).click();
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await page.getByPlaceholder('Select date').click();
+  await page.getByText('Now').click();
+  await page.getByRole('button', { name: 'Submit' }).click();
 });
