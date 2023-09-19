@@ -1,0 +1,52 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://biz-dev1-auth.kredx.com/realms/Shared/protocol/openid-connect/auth?response_type=code&client_id=shared-client&state=https://biz-dev1.kredx.com/receivables/&redirect_uri=https://biz-dev1.kredx.com/login_callback');
+  await page.getByLabel('Email').click();
+  await page.getByLabel('Email').fill('brenda+ifb1011@kredx.com');
+  await page.getByLabel('Email').press('Tab');
+  await page.getByLabel('Password').press('CapsLock');
+  await page.getByLabel('Password').fill('A');
+  await page.getByLabel('Password').press('CapsLock');
+  await page.getByLabel('Password').fill('Asdf!234');
+  await page.getByRole('button', { name: 'Sign In' }).click();
+  await page.getByText('Documents').click();
+  await page.getByRole('link', { name: 'Invoices' }).click();
+  await page.getByRole('row', { name: 'TL29T180923/01 Sep 01, 2023 Sep 01, 2023 Sep 30, 2023 Over Payment Organization Organization 29 -11 ₹1,00,000.00 -₹4,140.00' }).getByLabel('').check();
+  await page.getByRole('button', { name: 'Add Supporting Document' }).click();
+  //await page.pause();
+  //await page.locator('/html/body/div[3]/div/div[2]/div/div[2]/div[2]/div[3]/div[2]').setInputFiles('tests\\Add_Supporting_Doc\\PDF2.pdf');
+  //await page.locator("locator('div').filter({ hasText: /^Drag & Drop the files to Upload or Browse your files\.$/ })").setInputFiles('tests\\Add_Supporting_Doc\\PDF2.pdf');
+  await page.locator("//img[@class='drag-and-drop-img']").click();
+  await page.locator("//img[@class='drag-and-drop-img']").setInputFiles('tests\\Add_Supporting_Doc\\PDF2.pdf');
+  await page.pause();
+  ///html/body/div[3]/div/div[2]/div/div[2]/div[2]/div[3]/div[2]
+  await page.locator('body div.ant-modal-wrap div.ant-modal-content > div.ant-modal-body div.ant-upload-drag input[type=file]').setInputFiles('tests\\Add_Supporting_Doc\\PDF2.pdf');
+  await page.getByLabel('Subject', { exact: true }).click();
+  await page.getByLabel('Subject', { exact: true }).press('CapsLock');
+  await page.getByLabel('Subject', { exact: true }).fill('D');
+  await page.getByLabel('Subject', { exact: true }).press('CapsLock');
+  await page.getByLabel('Subject', { exact: true }).fill('Dispute ');
+  await page.getByLabel('Subject', { exact: true }).press('CapsLock');
+  await page.getByLabel('Subject', { exact: true }).fill('Dispute R');
+  await page.getByLabel('Subject', { exact: true }).press('CapsLock');
+  await page.getByLabel('Subject', { exact: true }).fill('Dispute Resolution');
+  await page.getByLabel('Reason Category').click();
+  await page.getByTitle('Collections').getByText('Collections').click();
+  await page.getByLabel('Reason Sub Category').click();
+  await page.getByTitle('Pending Payment').getByText('Pending Payment').click();
+  await page.getByLabel('Priority').click();
+  await page.getByText('Low', { exact: true }).click();
+  await page.getByLabel('Details').click();
+  await page.getByLabel('Details').press('CapsLock');
+  await page.getByLabel('Details').fill('D');
+  await page.getByLabel('Details').press('CapsLock');
+  await page.getByLabel('Details').fill('Dispute ');
+  await page.getByLabel('Details').press('CapsLock');
+  await page.getByLabel('Details').fill('Dispute R');
+  await page.getByLabel('Details').press('CapsLock');
+  await page.getByLabel('Details').fill('Dispute Resolution');
+  await page.getByRole('button', { name: 'Submit' }).click();
+  //await page.pause();
+  });
+ 

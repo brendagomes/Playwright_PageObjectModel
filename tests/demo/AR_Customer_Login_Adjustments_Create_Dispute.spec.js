@@ -1,0 +1,44 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://biz-dev1-auth.kredx.com/realms/Shared/protocol/openid-connect/auth?response_type=code&client_id=shared-client&state=https://biz-dev1.kredx.com/receivables/&redirect_uri=https://biz-dev1.kredx.com/login_callback');
+  await page.getByLabel('Email').click();
+  await page.getByLabel('Email').fill('brenda+ifb1011@kredx.com');
+  await page.getByLabel('Email').press('Tab');
+  await page.getByLabel('Password').press('CapsLock');
+  await page.getByLabel('Password').fill('A');
+  await page.getByLabel('Password').press('CapsLock');
+  await page.getByLabel('Password').fill('Asdf!234');
+  await page.getByRole('button', { name: 'Sign In' }).click();
+  await page.getByText('Documents').click();
+  await page.getByRole('link', { name: 'Adjustments' }).click();
+  await page.getByRole('row', { name: 'DR/1085 DEBIT TL29T120723/1880 Aug 05, 2023 Aug 05, 2023 Aug 06, 2023 ₹40,000.00 Approved -- -- -- Organization' }).getByLabel('').check();
+  await page.getByRole('button', { name: 'Create Dispute' }).click();
+  await page.getByLabel('Subject', { exact: true }).click();
+  await page.getByLabel('Subject', { exact: true }).press('CapsLock');
+  await page.getByLabel('Subject', { exact: true }).fill('D');
+  await page.getByLabel('Subject', { exact: true }).press('CapsLock');
+  await page.getByLabel('Subject', { exact: true }).fill('Dispute ');
+  await page.getByLabel('Subject', { exact: true }).press('CapsLock');
+  await page.getByLabel('Subject', { exact: true }).fill('Dispute R');
+  await page.getByLabel('Subject', { exact: true }).press('CapsLock');
+  await page.getByLabel('Subject', { exact: true }).fill('Dispute Resolution');
+  await page.getByLabel('Reason Category').click();
+  await page.getByTitle('Collections').getByText('Collections').click();
+  await page.getByLabel('Reason Sub Category').click();
+  await page.getByTitle('Pending Payment').getByText('Pending Payment').click();
+  await page.getByLabel('Priority').click();
+  await page.getByText('Low', { exact: true }).click();
+  await page.getByLabel('Details').click();
+  await page.getByLabel('Details').press('CapsLock');
+  await page.getByLabel('Details').fill('D');
+  await page.getByLabel('Details').press('CapsLock');
+  await page.getByLabel('Details').fill('Dispute ');
+  await page.getByLabel('Details').press('CapsLock');
+  await page.getByLabel('Details').fill('Dispute R');
+  await page.getByLabel('Details').press('CapsLock');
+  await page.getByLabel('Details').fill('Dispute Resolution');
+  await page.getByRole('button', { name: 'Submit' }).click();
+  //await page.pause();
+  });
+ 
